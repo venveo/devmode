@@ -156,7 +156,6 @@ module.exports = {
             "/dist/js/workbox-catch-handler.js",
         ],
         exclude: [
-            /\/admin.*$/,
             /\.(png|jpe?g|gif|svg|webp)$/i,
             /\.(mp3)$/i,
             /\.map$/,
@@ -169,6 +168,18 @@ module.exports = {
         ],
         offlineGoogleAnalytics: true,
         runtimeCaching: [
+            {
+                urlPattern: /\/admin.*$/, // Don't cache admin requests
+                handler: "networkOnly"
+            },
+            {
+                urlPattern: /\.php/, // Don't cache any php requests (such as queue handler)
+                handler: "networkOnly"
+            },
+            {
+                urlPattern: /\.(mp3)$/i, // Don't cache any mp3s
+                handler: "networkOnly"
+            }
             {
                 urlPattern: /\.(?:png|jpg|jpeg|svg|webp)$/,
                 handler: "cacheFirst",
