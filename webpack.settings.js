@@ -179,7 +179,7 @@ module.exports = {
             {
                 urlPattern: /\.(mp3)$/i, // Don't cache any mp3s
                 handler: "networkOnly"
-            }
+            },
             {
                 urlPattern: /\.(?:png|jpg|jpeg|svg|webp)$/,
                 handler: "cacheFirst",
